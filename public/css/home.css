@@ -1,0 +1,86 @@
+
+
+main {
+    background-color: #3b3125;
+}
+
+h1 {
+    margin: 45px auto 15px;
+    color: #f7f7f7;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.biggy {
+    position: relative;
+    height: 620px;
+    background: url('../img/bakery3.jpg') no-repeat center center;
+    background-size: cover;
+    background-position-y: -250px;
+    color: #f7f7f7;
+    box-shadow: 0px 6px 20px 4px #150e07a6;
+}
+.biggy .gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(90deg, #000000a0 30%, transparent 70%);
+}
+
+.biggy .description {
+    position: relative;
+    width: 50%;
+    padding: 145px 95px 95px;
+    font-size: 22px;
+    line-height: 1.75em;
+    z-index: 2;
+}
+
+.type {
+    height: 500px;
+    padding: 30px 50px;
+    border: 1px solid #69645a;
+    color: #f7f7f7;
+    font-size: 48px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+/* chevrons */
+.gg-push-chevron-down-o {
+    color: #f7f7f7;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(1.5);
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    border-radius: 100px
+}
+.gg-push-chevron-down-o::after,
+.gg-push-chevron-down-o::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    border-bottom: 2px solid
+}
+.gg-push-chevron-down-o::before {
+    bottom: 5px;
+    width: 8px;
+    height: 2px;
+    left: 5px
+}
+.gg-push-chevron-down-o::after {
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid;
+    transform: rotate(45deg);
+    left: 6px;
+    top: 3px
+}

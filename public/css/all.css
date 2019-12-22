@@ -1,0 +1,26 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    /*background-color: #f7f7f7;*/
+    background-color: #3b3125;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.15s;
+}
+a:hover {
+    color: #007bff;
+}
+
+div {
+    font-family: 'Poppins', san-serif;
+}
