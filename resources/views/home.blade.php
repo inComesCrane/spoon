@@ -3,6 +3,7 @@
 @section('css')
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Arvo:400,400i,700,700i&display=swap" rel="stylesheet">
+    <meta title="Home | Slice">
 @endsection
 
 @section('content')
@@ -26,25 +27,31 @@
             </div>
             <div class="row justify-content-around mt-5 mb-5">
                 <div class="col-sm-12 col-md-3 type">
+                    <div>
                     <img src="/img/breakfast2.svg" style="height: 64px;"><br/>
                     Some <br> Breakfast
+                    </div>
                 </div>
                 <div class="col-sm-12 col-md-3 type">
+                    <div>
                     <img src="/img/lunch2.svg" style="height: 72px;"><br/>
                     Some <br> Lunch
+                    </div>
                 </div>
                 <div class="col-sm-12 col-md-3 type">
-                    <img src="/img/snakc.svg" style="height: 64px;"><br/>
-                    Some <br> Snacks
+                    <div>
+                        <img src="/img/snakc.svg" style="height: 64px;"><br/>
+                        Some <br> Snacks
+                    </div>
                 </div>
             </div>
-            <h2> Or maybe- </h2>
+            <h2 style="color: #f7f7f7;"> Or maybe - </h2>
             <div class="row justify-content-around mt-5 mb-5">
                 <div class="col-sm-12 col-md-5 type">
-                    Something <span> salty </span>
+                    <div> Something <span> salty </span> </div>
                 </div>
                 <div class="col-sm-12 col-md-5 type">
-                    Something <span> sweet </span>
+                    <div> Something <span> sweet </span> </div>
                 </div>
             </div>
         </div>
