@@ -57,6 +57,10 @@
         </div>
         <div style="height: 700px; background-color: mintcream">
 
+            <a href="{{ route('payment') }}" class="btn btn-success">
+                <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png" border="0" alt="PayPal Logo">
+            </a>
+
         </div>
     </main>
 
