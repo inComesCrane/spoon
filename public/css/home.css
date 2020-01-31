@@ -1,9 +1,6 @@
 
 
 main {
-    /*background-color: #3b3125;*/
-    /*background-color: #d86464;*/
-    /*background-color: #ca603f;*/
     background-color: #db6d29;
 }
 
@@ -29,9 +26,7 @@ h1 {
     left: 0;
     bottom: 0;
     right: 0;
-    /*background: linear-gradient(90deg, #000000a0 30%, transparent 70%);*/
     background: linear-gradient(90deg, #3c2e1aa3 30%, transparent 70%);
-    /*background: linear-gradient(90deg, #000000a0 30%, transparent 70%);*/
 }
 
 .biggy .description {
@@ -45,10 +40,7 @@ h1 {
 
 .type {
     padding: 65px 50px;
-    /*background: #bd4926;*/
-    /*background: linear-gradient(180deg, #f79d2e 73%, #ec80108c, #e47f37 100%);*/
-    background: linear-gradient(180deg, #f79d2e 73%, #ecb9105c, #e47f376b 100%);
-    /*background: #F2AF29;*/
+    background: linear-gradient(180deg, #f79d2e 73%, #ff8611 100%);
     color: #f7f7f7;
     font-size: 48px;
     text-align: center;
@@ -62,11 +54,10 @@ h1 {
             0 100px 80px rgba(0, 0, 0, 0.07);
     border-radius: .25em;
 }
-.type:hover {
-    /*background: #e46737;*/
-    /*background: #f79d2e;*/
-    background: #F2AF29;
-    background: linear-gradient(180deg, #F2AF29 73%, #ec80108c, #e47f37 100%);
+.type div {
+    position: relative;
+    font-family: inherit;
+    z-index: 3;
 }
 .type:before{
     position: absolute;
@@ -77,11 +68,7 @@ h1 {
     content: '';
     border-radius: .25em;
     opacity: 0;
-    /*background: linear-gradient(180deg, transparent 90%, #f37248);*/
-    /*background: linear-gradient(180deg, transparent 73%, #db5f39a3, #f37248 100%);*/
-    /*background: linear-gradient(180deg, transparent 73%, #db5f39a3, #fd742b 100%);*/
-    /*background: linear-gradient(180deg, transparent 73%, #f56f31, #ff98007a 100%);*/
-    /*background: linear-gradient(180deg, transparent 73%, #ec80108c, #e47f37 100%);*/
+    background: linear-gradient(180deg, #ffc30f 21%, #ffa914, #f87325 100%);
     transition: opacity 0.3s ease;
 }
 .type:hover:before{
