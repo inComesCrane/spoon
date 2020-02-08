@@ -11,6 +11,7 @@
 |
 */
 
+Route::resource('products', 'ProductController');
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -30,3 +31,5 @@ Route::get('/products/{productSlug}', function () {
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
+
+
