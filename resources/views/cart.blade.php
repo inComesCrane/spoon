@@ -47,7 +47,9 @@
                                 <input type="text" class="form-control" id="inputZip">
                             </div>
                         </div>
-                        <div id="paypal-button-container"></div>
+                        @if ($cart->count() > 0)
+                            <div id="paypal-button-container"></div>
+                        @endif
                     </form>
                 </div>
                 <div class="col-7" style="border-left: 1px solid #312e2c50;">
@@ -88,7 +90,7 @@
 @section('footer')
     <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
     <script>
-        var products = @php echo json_encode($cart); @endphp;
+
         function generateOrderKey(length) {
             var result = '';
             var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -99,49 +101,52 @@
             return result;
         }
 
-        paypal.Buttons({
-            style: {
-                shape: 'rect',
-                color: 'blue',
-                layout: 'horizontal',
-                label: 'paypal'
-            },
-            createOrder: function(data, actions) {
-                // Save sent data on our server
+        if (document.getElementById('paypal-button-container')) {
+            paypal.Buttons({
+                style: {
+                    shape: 'rect',
+                    color: 'blue',
+                    layout: 'horizontal',
+                    label: 'paypal'
+                },
+                createOrder: function (data, actions) {
+                    // Save sent data on our server
 
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: "/create-pending-order",
-                    type: "post",
-                    data: {
-                        order_key: generateOrderKey(20),
-                        firstName: document.getElementById('firstName').value,
-                        lastName: document.getElementById('lastName').value,
-                        email: document.getElementById('email').value,
-                        address1: document.getElementById('address_1').value,
-                        address2: document.getElementById('address_2').value,
-                        city: document.getElementById('city').value,
-                        zip: document.getElementById('zip').value,
-                    },
-                });
-                // This function sets up the details of the transaction, including the amount and line item details.
-                return actions.order.create({
-                    application_context: {
-                        "shipping_preference": "NO_SHIPPING"
-                    },
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function (details) {
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: "/create-pending-order",
+                        type: "post",
+                        data: {
+                            order_key: generateOrderKey(20),
+                            firstName: document.getElementById('firstName').value,
+                            lastName: document.getElementById('lastName').value,
+                            email: document.getElementById('email').value,
+                            address1: document.getElementById('address_1').value,
+                            address2: document.getElementById('address_2').value,
+                            city: document.getElementById('city').value,
+                            zip: document.getElementById('zip').value,
+                        },
+                    });
+                    // This function sets up the details of the transaction, including the amount and line item details.
+                    return actions.order.create({
+                        application_context: {
+                            "shipping_preference": "SHIPPING"
+                        },
+                    });
+                },
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (details) {
 
-                    //redirect to report page
-                    setTimeout(function () {
-                        window.location.href = '/thank-you';
-                    }, 3000);
-                });
-            }
-        }).render('#paypal-button-container');
+                        //redirect to report page
+                        setTimeout(function () {
+                            window.location.href = '/thank-you';
+                        }, 3000);
+                    });
+                }
+            }).render('#paypal-button-container');
+        }
+
     </script>
 @endsection
