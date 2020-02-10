@@ -110,3 +110,10 @@ h1 {
     left: 6px;
     top: 3px
 }
+
+.row a {
+    text-decoration: none;
+}
+.row a:hover {
+    color: #f7f7f7;
+}

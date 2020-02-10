@@ -59,12 +59,22 @@
                                     <a href="{{ url('products/' . $item->associatedModel->slug) }}" style="text-decoration: none;">
                                         {{ $item->name }} {{ (!empty($item->attributes->first()) ? ' - ' . $item->attributes->first() : '') }}
                                     </a> &#215; {{ $item->quantity }}
-                                    <span style="float: right;"> ${{ $item->getPriceSum() }} </span>
+                                    <span style="float: right;"> ${{ number_format($item->getPriceSum(), 2) }} </span>
                                 </li>
                             @endforeach
-                            <li style="padding: 10px 20px;">
+                            <li style="padding: 10px 20px; margin-bottom: 10px;">
                                 <span style="float:right;">
-                                    Subtotal: <strong> ${{ \Cart::getSubTotal() }} </strong>
+                                    Subtotal: <strong> ${{ number_format(\Cart::getSubTotal(), 2) }} </strong>
+                                </span>
+                            </li>
+                            <li style="padding: 10px 20px; margin-bottom: 10px;">
+                                <span style="float:right;">
+                                    Delivery (Flat Rate): <strong> $2.50 </strong>
+                                </span>
+                            </li>
+                            <li style="padding: 10px 20px; margin-bottom: 10px;">
+                                <span style="float:right;">
+                                    Total: <strong> ${{ number_format(2.50 + \Cart::getSubTotal(), 2) }} </strong>
                                 </span>
                             </li>
                         </ul>

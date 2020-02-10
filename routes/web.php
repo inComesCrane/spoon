@@ -38,9 +38,7 @@ Route::get('/cancel', 'PayPalController@cancel')
 Route::get('/payment/success', 'PayPalController@success')
     ->name('payment.success');
 
-Route::get('/{categorySlug}', function () {
-    return view('products');
-})->name('category');
+Route::get('/category/{categorySlug}', 'CategoryController@show')->name('category');
 
 Route::get('/products/{productSlug}', 'ProductController@showProduct')
     ->name('product');

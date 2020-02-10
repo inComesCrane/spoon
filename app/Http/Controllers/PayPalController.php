@@ -21,20 +21,17 @@ class PayPalController extends Controller
     public function payment(ExpressCheckout $provider)
     {
         $orderData = [];
-        $orderData['items'] = [
-            [
-                'name' => 'ItSolutionStuff.com',
-                'price' => 100,
-                'desc' => 'Description for ItSolutionStuff.com',
-                'qty' => 1
-            ],
-            [
-                'name' => 'ItSolutionStuff.com',
-                'price' => 10,
-                'desc' => 'Description for asdfgh.com',
-                'qty' => 2
-            ]
-        ];
+        $orderData['items'] = [];
+
+        $cart = \Cart::session(1)->getContent();
+        foreach ($cart as $item) {
+            $orderData['items'][] = [
+                'name' => $item->name,
+                'price' => $item->price,
+                'desc' => $item->associatedModel->description,
+                'qty' => $item->quantity
+            ];
+        }
 
         $orderData['invoice_id'] = 2;
         $orderData['invoice_description'] = "Order #{$orderData['invoice_id']} Invoice";

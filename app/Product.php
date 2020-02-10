@@ -16,6 +16,10 @@ class Product extends Model
     protected $fillable = [
         'name', 'description','image'
     ];
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'product_categories')->using(ProductCategory::class);
+    }
     public function OrderProduct()
     {
         return $this->belongsTo(OrderProduct::class);
@@ -23,9 +27,5 @@ class Product extends Model
     public function options()
     {
         return $this->hasMany(ProductOption::class);
-    }
-    public function ProductType()
-    {
-        return $this->hasMany(ProductType::class);
     }
 }

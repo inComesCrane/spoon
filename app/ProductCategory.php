@@ -9,7 +9,9 @@
 namespace App;
 
 
-class ProductType
+use Illuminate\Database\Eloquent\Relations\Pivot;
+
+class ProductCategory extends Pivot
 {
 
 }

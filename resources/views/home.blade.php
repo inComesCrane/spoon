@@ -27,41 +27,52 @@
             </div>
             <div class="row justify-content-around mt-5 mb-5">
                 <div class="col-sm-12 col-md-3 type">
-                    <div>
-                    <img src="/img/breakfast2.svg" style="height: 64px;"><br/>
-                    Some <br> Breakfast
-                    </div>
+                    <a href="{{ url('category/breakfast') }}">
+                        <div>
+                            <img src="/img/breakfast2.svg" style="height: 64px;"><br/>
+                            Some <br> Breakfast
+                        </div>
+                    </a>
                 </div>
                 <div class="col-sm-12 col-md-3 type">
-                    <div>
-                    <img src="/img/lunch2.svg" style="height: 72px;"><br/>
-                    Some <br> Lunch
-                    </div>
+                    <a href="{{ url('category/lunch') }}">
+                        <div>
+                            <img src="/img/lunch2.svg" style="height: 72px;"><br/>
+                            Some <br> Lunch
+                        </div>
+                    </a>
                 </div>
                 <div class="col-sm-12 col-md-3 type">
-                    <div>
-                        <img src="/img/snakc.svg" style="height: 64px;"><br/>
-                        Some <br> Snacks
-                    </div>
+                    <a href="{{ url('category/snacks') }}">
+                        <div>
+                            <img src="/img/snack.svg" style="height: 64px;"><br/>
+                            Some <br> Snacks
+                        </div>
+                    </a>
                 </div>
             </div>
             <h2 style="color: #f7f7f7;"> Or maybe - </h2>
-            <div class="row justify-content-around mt-5 mb-5">
+            <div class="row justify-content-around mt-5 pb-5">
                 <div class="col-sm-12 col-md-5 type">
-                    <div> Something <span> salty </span> </div>
+                    <a href="{{ url('category/salty') }}">
+                        <div> Something <span> salty </span> </div>
+                    </a>
                 </div>
+
                 <div class="col-sm-12 col-md-5 type">
-                    <div> Something <span> sweet </span> </div>
+                    <a href="{{ url('category/sweet') }}">
+                        <div> Something <span> sweet </span> </div>
+                    </a>
                 </div>
             </div>
         </div>
-        <div style="height: 700px; background-color: mintcream">
+        {{--<div style="height: 700px; background-color: mintcream">--}}
 
-            <a href="{{ route('payment') }}" class="btn btn-success">
-                <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png" border="0" alt="PayPal Logo">
-            </a>
+            {{--<a href="{{ route('payment') }}" class="btn btn-success">--}}
+                {{--<img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png" border="0" alt="PayPal Logo">--}}
+            {{--</a>--}}
 
-        </div>
+        {{--</div>--}}
     </main>
 @endsection
 
