@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PendingOrder;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -95,4 +96,16 @@ class PayPalController extends Controller
 
         dd('Something is wrong.');
     }
+
+    public function createPendingOrder($orderKey)
+    {
+        $pendingOrder = new PendingOrder();
+
+        $pendingOrder->fill([
+            'order_key' => $orderKey,
+        ])->save();
+
+        return $pendingOrder;
+    }
+
 }

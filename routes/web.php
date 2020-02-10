@@ -26,6 +26,8 @@ Route::get('/thank-you', function () {
     return view('thankYou');
 })->name('thankYou');
 
+Route::post('/create-pending-order', 'PayPalController@createPendingOrder');
+
 Route::get('/products', 'ProductController@allProducts')
     ->name('products');
 
@@ -43,5 +45,8 @@ Route::get('/category/{categorySlug}', 'CategoryController@show')->name('categor
 Route::get('/products/{productSlug}', 'ProductController@showProduct')
     ->name('product');
 
-Route::resource('/admin/products', '/Admin/ProductController');
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::resource('/products', 'ProductController');
+});
+
 

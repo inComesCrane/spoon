@@ -88,6 +88,17 @@
 @section('footer')
     <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
     <script>
+        var products = @php echo json_encode($cart); @endphp;
+        function generateOrderKey(length) {
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        }
+
         paypal.Buttons({
             style: {
                 shape: 'rect',
@@ -96,17 +107,50 @@
                 label: 'paypal'
             },
             createOrder: function(data, actions) {
+                // Save sent data on our server
+                let orderkey = generateOrderKey(20);
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "/create-pending-order",
+                    type: "post",
+                    data: {
+                        order_key: orderkey,
+                    },
+                });
+                // This function sets up the details of the transaction, including the amount and line item details.
                 return actions.order.create({
+                    application_context: {
+                        "shipping_preference": "NO_SHIPPING"
+                    },
                     purchase_units: [{
+                        custom_id: products[i].id,
                         amount: {
-                            value: '1'
-                        }
-                    }]
+                            value: products[i].price
+                        },
+                        description: "order_key=" + orderkey + "&product={{$cart->vin}}&logged_in=" + logged_in
+                    }],
                 });
             },
             onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                return actions.order.capture().then(function (details) {
+
+                    // Call your server to save the transaction
+                    fetch('/listener', {
+                        method: 'post',
+                        headers: {
+                            'content-type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            orderID: data.orderID
+                        })
+                    });
+
+                    //redirect to report page
+                    setTimeout(function () {
+                        window.location.href = '/thank-you';
+                    }, 3000);
                 });
             }
         }).render('#paypal-button-container');
