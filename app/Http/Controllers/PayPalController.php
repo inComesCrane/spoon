@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\PendingOrder;
+use App\Order;
+use App\OrderProduct;
+use App\User;
+use App\UserInfo;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -97,15 +100,39 @@ class PayPalController extends Controller
         dd('Something is wrong.');
     }
 
-    public function createPendingOrder($orderKey)
+    public function createOrder(Request $request)
     {
-        $pendingOrder = new PendingOrder();
-
-        $pendingOrder->fill([
-            'order_key' => $orderKey,
+        $user = new User();
+        $user->fill([
+            'name' => $request->input('firstName') . ' ' . $request->input('lastName'),
+            'email' => $request->input('email')
         ])->save();
 
-        return $pendingOrder;
-    }
+        $userInfo = new UserInfo();
+        $userInfo->fill([
+            'user_id' => $user->id,
+            'firstName' => $request->input('firstName'),
+            'lastName' => $request->input('lastName'),
+            'city' => $request->input('city'),
+            'zip' => $request->input('zip'),
+            'address_1' => $request->input('address_1'),
+            'address_2' => $request->input('address_2'),
+        ])->save();
 
+        $order = new Order;
+        $order->fill([
+            'user_id' => $user->id,
+            'complete' => 'true'
+        ])->save();
+
+        $items = \Cart::session(1)->getContent();
+        foreach ($items as $item) {
+            $op = new OrderProduct();
+            $op->fill([
+                'order_id' => $order->id,
+                'product_id' => $item->associatedModel->id,
+                'amount' => $item->quantity
+            ])->save();
+        }
+    }
 }

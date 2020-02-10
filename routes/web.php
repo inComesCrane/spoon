@@ -26,7 +26,7 @@ Route::get('/thank-you', function () {
     return view('thankYou');
 })->name('thankYou');
 
-Route::post('/create-pending-order', 'PayPalController@createPendingOrder');
+Route::post('/create-order', 'PayPalController@createPendingOrder');
 
 Route::get('/products', 'ProductController@allProducts')
     ->name('products');

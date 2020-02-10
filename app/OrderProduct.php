@@ -11,5 +11,9 @@ namespace App;
 
 class OrderProduct
 {
-
+    protected $fillable = [
+        'order_id',
+        'product_id',
+        'amount',
+    ];
 }

@@ -108,7 +108,7 @@
             },
             createOrder: function(data, actions) {
                 // Save sent data on our server
-                let orderkey = generateOrderKey(20);
+
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -116,7 +116,14 @@
                     url: "/create-pending-order",
                     type: "post",
                     data: {
-                        order_key: orderkey,
+                        order_key: generateOrderKey(20),
+                        firstName: document.getElementById('firstName').value,
+                        lastName: document.getElementById('lastName').value,
+                        email: document.getElementById('email').value,
+                        address1: document.getElementById('address_1').value,
+                        address2: document.getElementById('address_2').value,
+                        city: document.getElementById('city').value,
+                        zip: document.getElementById('zip').value,
                     },
                 });
                 // This function sets up the details of the transaction, including the amount and line item details.
@@ -124,28 +131,10 @@
                     application_context: {
                         "shipping_preference": "NO_SHIPPING"
                     },
-                    purchase_units: [{
-                        custom_id: products[i].id,
-                        amount: {
-                            value: products[i].price
-                        },
-                        description: "order_key=" + orderkey + "&product={{$cart->vin}}&logged_in=" + logged_in
-                    }],
                 });
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function (details) {
-
-                    // Call your server to save the transaction
-                    fetch('/listener', {
-                        method: 'post',
-                        headers: {
-                            'content-type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            orderID: data.orderID
-                        })
-                    });
 
                     //redirect to report page
                     setTimeout(function () {

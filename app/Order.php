@@ -11,5 +11,8 @@ namespace App;
 
 class Order
 {
-
+    protected $fillable = [
+        'user_id',
+        'complete',
+    ];
 }
