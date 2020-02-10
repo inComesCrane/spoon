@@ -20,8 +20,8 @@ class CreateOrderProductsTable extends Migration
             $table->integer('amount');
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('product_id', 'fk_product-id_op')->references('id')->on('products');
+            $table->foreign('order_id', 'fk_order-id_op')->references('id')->on('orders');
         });
 
 

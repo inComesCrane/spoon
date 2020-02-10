@@ -1,7 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: inComesCrane
- * Date: 12/22/2019
- * Time: 6:40 PM
- */
+
+<footer style="width: 100%; height: 50px; background-color: #312e2c;">
+    <div style="background-color: #1f1a17; color: #f7f7f7; text-align: center; padding: 20px;">
+        <span>Copyright © {{ date('Y') }} Slice Inc. </span>
+    </div>
+</footer>

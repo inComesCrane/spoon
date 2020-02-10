@@ -133,4 +133,9 @@ return [
 
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
+    'swiftmailer' => [
+        'username' => env('SWIFTMAILER_USER', ''),
+        'password' => env('SWIFTMAILER_PASS', '')
+    ]
+
 ];

@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('/cart', 'CartController@show')->name('cart');
+
+Route::post('/add-to-cart', 'CartController@add')
+    ->name('addToCart');
+
 Route::get('/thank-you', function () {
     return view('thankYou');
 })->name('thankYou');
@@ -24,24 +29,21 @@ Route::get('/thank-you', function () {
 Route::get('/products', 'ProductController@allProducts')
     ->name('products');
 
+Route::get('/payment', 'PayPalController@payment')
+    ->name('payment');
+
+Route::get('/cancel', 'PayPalController@cancel')
+    ->name('payment.cancel');
+
+Route::get('/payment/success', 'PayPalController@success')
+    ->name('payment.success');
+
 Route::get('/{categorySlug}', function () {
     return view('products');
 })->name('category');
 
 Route::get('/products/{productSlug}', 'ProductController@showProduct')
     ->name('product');
-
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
-
-Route::get('payment', 'PayPalController@payment')->name('payment');
-Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
-Route::get('payment/success', 'PayPalController@success')->name('payment.success');
-
-Route::get('/{categorySlug}', function () {
-    return view('category');
-})->name('category');
 
 Route::resource('/admin/products', '/Admin/ProductController');
 

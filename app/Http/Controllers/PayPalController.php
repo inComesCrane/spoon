@@ -70,8 +70,30 @@ class PayPalController extends Controller
         $response = $provider->getExpressCheckoutDetails($request->token);
 
         if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
-            return view('welcome');
-            dd('Your payment was successful. You can create success page here.');
+
+            // Create the Transport
+            $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
+                ->setUsername(config('mail.swiftmailer.username'))
+                ->setPassword(config('mail.swiftmailer.password'));
+
+            // Create the Mailer using your created Transport
+            $mailer = new Swift_Mailer($transport);
+            $body = view('mail')->render();
+
+            // Create a message
+            $message = (new Swift_Message('Slice Order Receipt - ' . date('M d Y, g:h')))
+                ->setFrom(['sara.tanku@gmail.com' => 'Slice Inc.'])
+                ->setTo(['sara.tanku@gmail.com'])
+                ->setBody($body)
+                ->setContentType('text/html');
+
+            // Send the message
+            $mailer->send($message);
+
+            // Empty the cart
+            \Cart::session(1)->clear();
+
+            return view('thankYou');
         }
 
         dd('Something is wrong.');

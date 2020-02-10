@@ -1,0 +1,106 @@
+
+main {
+    background-color: #d79033;
+}
+.hero {
+    height: 250px;
+    padding: 50px;
+    color: #f7f7f7;
+    background-color: #312e2c;
+    font-size: 100px;
+    font-family: 'Bebas Neue', cursive;
+    text-align: center;
+    vertical-align: middle;
+}
+.product {
+    height: 240px;
+    margin: 0 0 30px 0;
+}
+.product .inner {
+    height: 100%;
+    background-color: #f7f7f7;
+    border-radius: 6px;
+    box-shadow: none;
+    padding: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+.img {
+    position: relative;
+    background-color: #e9e9ea;
+    width: 220px;
+    border-radius: 6px;
+    z-index: 2;
+    overflow: hidden;
+}
+.img img {
+    height: 100%;
+    border-radius: inherit;
+}
+
+
+
+
+
+input[type=number] {
+    float: left;
+    width: 70px;
+    height: 35px;
+    padding: 0;
+    font-family: Lato;
+    font-weight: 700;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #93504C;
+    border: 2px #93504C solid;
+    background: none;
+    outline: none;
+    pointer-events: none;
+}
+
+span.spinner {
+    position: absolute;
+    height: 40px;
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+span.spinner > .sub,
+span.spinner > .add {
+    float: left;
+    display: block;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2em;
+    line-height: 33px;
+    color: #93504C;
+    border: 2px #93504C solid;
+    border-right: 0;
+    border-radius: 2px 0 0 2px;
+    cursor: pointer;
+    transition: 0.1s linear;
+    -webkit-transition: 0.1s linear;
+}
+
+span.spinner > .add {
+    top: 0;
+    border: 2px #93504C solid;
+    border-left: 0;
+    border-radius: 0 2px 2px 0;
+}
+
+span.spinner > .sub:hover,
+span.spinner > .add:hover {
+    background: #93504C;
+    color: #25323B;
+}
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}

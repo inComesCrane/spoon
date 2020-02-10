@@ -17,17 +17,10 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name', 100);
             $table->string('description', 255);
+            $table->float('price');
             $table->string('image', 255);
-            $table->integer('type_1')->unsigned()->nullable();
-            $table->integer('type_2')->unsigned()->nullable();
+            $table->string('slug', 255);
             $table->timestamps();
-
-            $table->foreign('type_1')->references('id')->on('product_types')
-                ->onDelete('set null')
-                ->onUpdate('cascade');
-            $table->foreign('type_2')->references('id')->on('product_types')
-                ->onDelete('set null')
-                ->onUpdate('cascade');
         });
     }
 
